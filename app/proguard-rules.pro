@@ -20,19 +20,16 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
--keep class com.dial.plinko.model.InfoUrl { *; }
+-keep class com.dial.plinko.model.** { *; }
+-keep class com.dial.plinko.api.** { *; }
 
-## Rules for Retrofit2
--keepclasseswithmembers class * {
+-dontwarn retrofit2.**
+-keep interface retrofit2.**
+-keepclassmembers,allowobfuscation interface * {
     @retrofit2.http.* <methods>;
 }
-# Platform calls Class.forName on types which do not exist on Android to determine platform.
--dontnote retrofit2.Platform
-# Retain generic type information for use by reflection by converters and adapters.
 -keepattributes Signature
-# Retain declared checked exceptions for use by a Proxy instance.
 -keepattributes Exceptions
-
 
 ## Rules for Gson
 # For using GSON @Expose annotation
